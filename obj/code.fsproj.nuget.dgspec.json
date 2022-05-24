@@ -1,0 +1,86 @@
+{
+  "format": 1,
+  "restore": {
+    "e:\\大三——下\\编译原理\\lec05.re.fa.lexer\\fslex demo\\code\\code.fsproj": {}
+  },
+  "projects": {
+    "e:\\大三——下\\编译原理\\lec05.re.fa.lexer\\fslex demo\\code\\code.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "e:\\大三——下\\编译原理\\lec05.re.fa.lexer\\fslex demo\\code\\code.fsproj",
+        "projectName": "code",
+        "projectPath": "e:\\大三——下\\编译原理\\lec05.re.fa.lexer\\fslex demo\\code\\code.fsproj",
+        "packagesPath": "C:\\Users\\栋晟\\.nuget\\packages\\",
+        "outputPath": "e:\\大三——下\\编译原理\\lec05.re.fa.lexer\\fslex demo\\code\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\栋晟\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://nuget.cdn.azure.cn/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "FSharp.Core": {
+              "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[6.0.2, )",
+              "generatePathProperty": true
+            },
+            "fslexyacc": {
+              "target": "Package",
+              "version": "[10.2.0, )",
+              "generatePathProperty": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.14, 5.0.14]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
