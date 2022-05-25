@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\大三——下\\编译原理\\plzoofs\\microc\\interpc.fsproj": {}
+    "E:\\大三——下\\编译原理\\compiler-Final-Project\\interpc.fsproj": {}
   },
   "projects": {
-    "E:\\大三——下\\编译原理\\plzoofs\\microc\\interpc.fsproj": {
+    "E:\\大三——下\\编译原理\\compiler-Final-Project\\interpc.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\大三——下\\编译原理\\plzoofs\\microc\\interpc.fsproj",
+        "projectUniqueName": "E:\\大三——下\\编译原理\\compiler-Final-Project\\interpc.fsproj",
         "projectName": "interpc",
-        "projectPath": "E:\\大三——下\\编译原理\\plzoofs\\microc\\interpc.fsproj",
+        "projectPath": "E:\\大三——下\\编译原理\\compiler-Final-Project\\interpc.fsproj",
         "packagesPath": "C:\\Users\\栋晟\\.nuget\\packages\\",
-        "outputPath": "E:\\大三——下\\编译原理\\plzoofs\\microc\\obj\\",
+        "outputPath": "E:\\大三——下\\编译原理\\compiler-Final-Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\栋晟\\AppData\\Roaming\\NuGet\\NuGet.Config"
