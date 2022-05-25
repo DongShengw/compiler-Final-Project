@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {
+    "net6.0": {
       "FSharp.Core/6.0.2": {
         "type": "package",
         "compile": {
@@ -219,9 +219,9 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net5.0": [
+    "net6.0": [
       "FSharp.Core >= 6.0.2",
-      "fslexyacc >= 10.2.0"
+      "FsLexYacc >= 10.2.0"
     ]
   },
   "packageFolders": {
@@ -230,31 +230,31 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "e:\\大三——下\\编译原理\\lec05.re.fa.lexer\\fslex demo\\code\\code.fsproj",
-      "projectName": "code",
-      "projectPath": "e:\\大三——下\\编译原理\\lec05.re.fa.lexer\\fslex demo\\code\\code.fsproj",
+      "projectUniqueName": "E:\\大三——下\\编译原理\\plzoofs\\microc\\interpc.fsproj",
+      "projectName": "interpc",
+      "projectPath": "E:\\大三——下\\编译原理\\plzoofs\\microc\\interpc.fsproj",
       "packagesPath": "C:\\Users\\栋晟\\.nuget\\packages\\",
-      "outputPath": "e:\\大三——下\\编译原理\\lec05.re.fa.lexer\\fslex demo\\code\\obj\\",
+      "outputPath": "E:\\大三——下\\编译原理\\plzoofs\\microc\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\栋晟\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "net6.0"
       ],
       "sources": {
         "https://nuget.cdn.azure.cn/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {}
         }
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "dependencies": {
           "FSharp.Core": {
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
@@ -262,7 +262,7 @@
             "version": "[6.0.2, )",
             "generatePathProperty": true
           },
-          "fslexyacc": {
+          "FsLexYacc": {
             "target": "Package",
             "version": "[10.2.0, )",
             "generatePathProperty": true
@@ -278,24 +278,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.14, 5.0.14]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
