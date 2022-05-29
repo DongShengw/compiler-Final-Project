@@ -1,5 +1,5 @@
 %{
-(*	File MicroC/CPar.fsy 
+(*	File MicroC/CPar.fsy
 	Parser specification for micro-C, a small imperative language
 	sestoft@itu.dk * 2009-09-29
 	No (real) shift/reduce conflicts thanks to Niels Kokholm.
@@ -19,6 +19,7 @@ let nl = CstI 10 //  \n 的 ASCII 码
 
 %token CHAR ELSE IF INT NULL PRINT PRINTLN RETURN VOID WHILE
 %token PLUS MINUS TIMES DIV MOD
+%token PREINC PREDEC  // 自增自减
 %token EQ NE GT LT GE LE
 %token NOT SEQOR SEQAND
 %token LPAR RPAR LBRACE RBRACE LBRACK RBRACK SEMI COMMA ASSIGN AMP
@@ -28,11 +29,11 @@ let nl = CstI 10 //  \n 的 ASCII 码
 %nonassoc PRINT
 %left SEQOR
 %left SEQAND
-%left EQ NE 
+%left EQ NE
 %nonassoc GT LT GE LE
 %left PLUS MINUS
-%left TIMES DIV MOD 
-%nonassoc NOT AMP 
+%left TIMES DIV MOD
+%nonassoc NOT AMP PREINC PREDEC
 %nonassoc LBRACK          /* highest precedence  */
 
 %start Main            // 语法开始符号
@@ -50,18 +51,18 @@ Topdecs:
   | Topdec Topdecs                      { $1 :: $2 }
 ;
 
-Topdec: 
+Topdec:
     Vardec SEMI                         { Vardec (fst $1, snd $1) }
   | Fundec                              { $1 }
 ;
 
-/*                                               
+/*
 变量声明  由于C 类型声明的复杂性，这里用了函数式编程的技巧来辅助类型构造
 
 利用变量描述中的构造函数，构造类型
  { ((fst $2) $1, snd $2) }
 
-int i;  // int  (TypI, "i")            fst (fun t->t , "i") TypI , snd (fun t->t , "i") 
+int i;  // int  (TypI, "i")            fst (fun t->t , "i") TypI , snd (fun t->t , "i")
 int *p;   // pointer to int   (TypP TypI, "p")
 int ia[10];  // array of 10 ints   (TypA (TypI, Some 10), "ia")
 int* ia2;  // pointer to int   (TypP TypI, "ia2")
@@ -69,29 +70,29 @@ int *ipa[10];  // array of 10 pointers to int   (TypA (TypP TypI, Some 10), "ipa
 int (*iap)[10];  // pointer to array of 10 int    (TypP (TypA (TypI, Some 10))
 */
 
-Vardec:                                
+Vardec:
     Type Vardesc                        { ((fst $2) $1, snd $2) }
 ;
 
 /*
  变量描述
 NAME  "n"   (fun t->t, "n") 返回一个元组，第一个元素，是类型构造函数，在Vardec 规则中使用
-*/ 
+*/
 
 // 变量描述
-Vardesc:                         
+Vardesc:
     // "i"    标识符                        fun t->t  id 函数
     NAME                                { ((fun t -> t), $1)                      }
     // "*p"   指针标识符
     // let compose1 f (g, s) = ((fun x -> g(f(x))), s)
-    //      compose1 TypP $2 
+    //      compose1 TypP $2
     //           TypP ( (fun t -> t) , "p")
-    //          (fun x ->  (fun t -> t) (TypP x) ), "p" 
-    //              ((fun x-> TypP x), "p")                
-    //       TypP 指针类型构造子 
-  | TIMES Vardesc                       { compose1 TypP $2                        }  
-    // (*p)   带括号的标识符                                 
-  | LPAR Vardesc RPAR                   { $2                                      } 
+    //          (fun x ->  (fun t -> t) (TypP x) ), "p"
+    //              ((fun x-> TypP x), "p")
+    //       TypP 指针类型构造子
+  | TIMES Vardesc                       { compose1 TypP $2                        }
+    // (*p)   带括号的标识符
+  | LPAR Vardesc RPAR                   { $2                                      }
     // ia[]   带方括号，无下标
   | Vardesc LBRACK RBRACK               { compose1 (fun t -> TypA(t, None)) $1    }
     // ia[10]   带方括号，带下标
@@ -127,7 +128,7 @@ StmtOrDecSeq:
   | Vardec SEMI StmtOrDecSeq            { Dec (fst $1, snd $1) :: $3 }
 ;
 
-Stmt: 
+Stmt:
     StmtM                               { $1 }
   | StmtU                               { $1 }
 ;
@@ -147,15 +148,17 @@ StmtU:
   | WHILE LPAR Expr RPAR StmtU          { While($3, $5)        }
 ;
 
-Expr: 
+Expr:
     Access                              { Access $1           } //取$1的右值
-  | ExprNotAccess                       { $1                  } 
+  | ExprNotAccess                       { $1                  }
 ;
   //非左值的情况
 ExprNotAccess:
     AtExprNotAccess                     { $1                  }
+  | PREINC Access                       { PreInc $2           }
+  | PREDEC Access                       { PreDec $2           }
   | Access ASSIGN Expr                  { Assign($1, $3)      } // $1为左值
-  | NAME LPAR Exprs RPAR                { Call($1, $3)        }  
+  | NAME LPAR Exprs RPAR                { Call($1, $3)        }
   | NOT Expr                            { Prim1("!", $2)      }
   | PRINT Expr                          { Prim1("printi", $2) }
   | PRINTLN                             { Prim1("printc", nl) }
@@ -175,21 +178,21 @@ ExprNotAccess:
 ;
 
 AtExprNotAccess:
-    //不可以为左值的的基本情况 
+    //不可以为左值的的基本情况
     // Const ,  3
     // AMP Access  , &x
-    // (3)   
+    // (3)
     Const                               { CstI $1             }
-  | LPAR ExprNotAccess RPAR             { $2                  } 
+  | LPAR ExprNotAccess RPAR             { $2                  }
   | AMP Access                          { Addr $2             } // 取地址
 ;
 
 Access:    //可以为左值的情况
     NAME                                { AccVar $1           }  // 变量 x
   | LPAR Access RPAR                    { $2                  }  // 括号中的变量 (x)
-  | TIMES Access                        { AccDeref (Access $2)}  // 指针  *x 
+  | TIMES Access                        { AccDeref (Access $2)}  // 指针  *x
   | TIMES AtExprNotAccess               { AccDeref $2         }
-  | Access LBRACK Expr RBRACK           { AccIndex($1, $3)    }   
+  | Access LBRACK Expr RBRACK           { AccIndex($1, $3)    }
 ;
 
 Exprs:

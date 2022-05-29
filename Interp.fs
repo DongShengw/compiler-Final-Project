@@ -174,11 +174,11 @@ let bindVar x v (env, nextloc) store : locEnv * store =
 
     //返回新环境，新的待分配位置+1，设置当前存储位置为值 v
     let ret = ((env1, nextloc + 1), setSto store nextloc v)
-    
+
     msg $"locEnv:\n {fst ret}\n"
     msg $"Store:\n {store2str (snd ret)}\n"
 
-    ret 
+    ret
 
 
 let rec bindVars xs vs locEnv store : locEnv * store =
@@ -298,6 +298,14 @@ and stmtordec stmtordec locEnv gloEnv store =
 
 and eval e locEnv gloEnv store : int * store =
     match e with
+    | PreInc acc ->
+                let (loc, store1) = access acc locEnv gloEnv store
+                let tmp = getSto store1 loc
+                (tmp + 1, setSto store1 loc (tmp + 1))
+    | PreDec acc ->
+                let (loc, store1) = access acc locEnv gloEnv store
+                let tmp = getSto store1 loc
+                (tmp - 1, setSto store1 loc (tmp - 1))
     | Access acc ->
         let (loc, store1) = access acc locEnv gloEnv store
         (getSto store1 loc, store1)
