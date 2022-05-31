@@ -453,17 +453,13 @@ java Machinetrace ex9.out 0
 |变量声明定义|ex(init).c|√|
 |自增、自减|ex(selfplus).c|√|
 |for循环|ex(for).c|√|
-|三目运算符|ex(ternary).c|√|
 |do-while|ex(dowhile).c|√|
 |while|ex(while).c|√|
-|range循环|ex(range).c||√|
 |break|ex(break).c|√|
 |continue|ex(continue).c|√|
 |switch-case|ex(switch).c|√|
 |float 类型|ex(float).c|√||
 |char 类型|ex(chars).c|√|
-|struct结构体|ex(struct).c|√|
-|try-catch|ex(exception).c|√
 |虚拟机类型支持|Machine.java|√|
 |虚拟机异常|exception|√
 
