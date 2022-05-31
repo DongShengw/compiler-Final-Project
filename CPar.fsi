@@ -12,10 +12,20 @@ type token =
   | COMMA
   | ASSIGN
   | AMP
+  | QUES
   | COLON
-  | CONTINUE
-  | BREAK
-  | QUEST
+  | POINT
+  | BITAND
+  | BITOR
+  | BITXOR
+  | BITLEFT
+  | BITRIGHT
+  | BITNOT
+  | PLUSASSIGN
+  | MINUSASSIGN
+  | TIMESASSIGN
+  | DIVASSIGN
+  | MODASSIGN
   | NOT
   | SEQOR
   | SEQAND
@@ -25,40 +35,46 @@ type token =
   | LT
   | GE
   | LE
+  | SELFINC
+  | SELFDEC
   | PLUS
   | MINUS
   | TIMES
   | DIV
   | MOD
-  | SELFPLUS
-  | SELFMINUS
-  | STRUCT
-  | DOT
+  | MAX
+  | MIN
+  | ABS
   | TRY
   | CATCH
   | THROW
+  | STRUCT
+  | BOOL
+  | BREAK
+  | CASE
   | CHAR
+  | CONTINUE
+  | DEFAULT
+  | DO
   | ELSE
+  | FLOAT
+  | FOR
   | IF
   | INT
-  | FLOAT
   | NULL
   | PRINT
   | PRINTLN
+  | PRINTF
   | RETURN
+  | STRING
+  | SWITCH
+  | UNTIL
   | VOID
   | WHILE
-  | SWITCH
-  | CASE
-  | FOR
-  | IN
-  | RANGE
-  | STRING
-  | DO
+  | CSTFLOAT of (float32)
   | CSTCHAR of (char)
   | CSTSTRING of (string)
   | NAME of (string)
-  | CSTFLOAT of (float32)
   | CSTINT of (int)
   | CSTBOOL of (int)
 type tokenId = 
@@ -73,10 +89,20 @@ type tokenId =
     | TOKEN_COMMA
     | TOKEN_ASSIGN
     | TOKEN_AMP
+    | TOKEN_QUES
     | TOKEN_COLON
-    | TOKEN_CONTINUE
-    | TOKEN_BREAK
-    | TOKEN_QUEST
+    | TOKEN_POINT
+    | TOKEN_BITAND
+    | TOKEN_BITOR
+    | TOKEN_BITXOR
+    | TOKEN_BITLEFT
+    | TOKEN_BITRIGHT
+    | TOKEN_BITNOT
+    | TOKEN_PLUSASSIGN
+    | TOKEN_MINUSASSIGN
+    | TOKEN_TIMESASSIGN
+    | TOKEN_DIVASSIGN
+    | TOKEN_MODASSIGN
     | TOKEN_NOT
     | TOKEN_SEQOR
     | TOKEN_SEQAND
@@ -86,40 +112,46 @@ type tokenId =
     | TOKEN_LT
     | TOKEN_GE
     | TOKEN_LE
+    | TOKEN_SELFINC
+    | TOKEN_SELFDEC
     | TOKEN_PLUS
     | TOKEN_MINUS
     | TOKEN_TIMES
     | TOKEN_DIV
     | TOKEN_MOD
-    | TOKEN_SELFPLUS
-    | TOKEN_SELFMINUS
-    | TOKEN_STRUCT
-    | TOKEN_DOT
+    | TOKEN_MAX
+    | TOKEN_MIN
+    | TOKEN_ABS
     | TOKEN_TRY
     | TOKEN_CATCH
     | TOKEN_THROW
+    | TOKEN_STRUCT
+    | TOKEN_BOOL
+    | TOKEN_BREAK
+    | TOKEN_CASE
     | TOKEN_CHAR
+    | TOKEN_CONTINUE
+    | TOKEN_DEFAULT
+    | TOKEN_DO
     | TOKEN_ELSE
+    | TOKEN_FLOAT
+    | TOKEN_FOR
     | TOKEN_IF
     | TOKEN_INT
-    | TOKEN_FLOAT
     | TOKEN_NULL
     | TOKEN_PRINT
     | TOKEN_PRINTLN
+    | TOKEN_PRINTF
     | TOKEN_RETURN
+    | TOKEN_STRING
+    | TOKEN_SWITCH
+    | TOKEN_UNTIL
     | TOKEN_VOID
     | TOKEN_WHILE
-    | TOKEN_SWITCH
-    | TOKEN_CASE
-    | TOKEN_FOR
-    | TOKEN_IN
-    | TOKEN_RANGE
-    | TOKEN_STRING
-    | TOKEN_DO
+    | TOKEN_CSTFLOAT
     | TOKEN_CSTCHAR
     | TOKEN_CSTSTRING
     | TOKEN_NAME
-    | TOKEN_CSTFLOAT
     | TOKEN_CSTINT
     | TOKEN_CSTBOOL
     | TOKEN_end_of_input
@@ -127,34 +159,35 @@ type tokenId =
 type nonTerminalId = 
     | NONTERM__startMain
     | NONTERM_Main
-    | NONTERM_TopDeclares
-    | NONTERM_TopDeclare
-    | NONTERM_StructDeclare
+    | NONTERM_Topdecs
+    | NONTERM_Topdec
+    | NONTERM_Vardec
+    | NONTERM_VardecAndAssign
+    | NONTERM_Vardesc
+    | NONTERM_Structdec
     | NONTERM_MemberDefList
-    | NONTERM_VariableDeclare
-    | NONTERM_VariableDeclareAndAssign
-    | NONTERM_VariableDescribe
-    | NONTERM_FunctionDeclare
-    | NONTERM_ParamDeclares
-    | NONTERM_ParamDeclaresNotEmpty
+    | NONTERM_Fundec
+    | NONTERM_Paramdecs
+    | NONTERM_Paramdecs1
     | NONTERM_Block
-    | NONTERM_StmtOrDeclareSeq
+    | NONTERM_StmtOrDecSeq
     | NONTERM_Stmt
     | NONTERM_StmtM
-    | NONTERM_StmtCase
-    | NONTERM_StmtCatch
-    | NONTERM_EXCEPTION
     | NONTERM_StmtU
+    | NONTERM_CaseStmt
+    | NONTERM_CatchStmt
+    | NONTERM_EXCEPTION
     | NONTERM_Expr
     | NONTERM_ExprNotAccess
+    | NONTERM_PrintfExpr
     | NONTERM_AtExprNotAccess
     | NONTERM_Access
     | NONTERM_Exprs
     | NONTERM_Exprs1
     | NONTERM_Const
+    | NONTERM_ConstChar
     | NONTERM_ConstString
     | NONTERM_ConstFloat
-    | NONTERM_ConstChar
     | NONTERM_Type
 /// This function maps tokens to integer indexes
 val tagOfToken: token -> int
@@ -167,4 +200,4 @@ val prodIdxToNonTerminal: int -> nonTerminalId
 
 /// This function gets the name of a token as a string
 val token_to_string: token -> string
-val Main : (FSharp.Text.Lexing.LexBuffer<'cty> -> token) -> FSharp.Text.Lexing.LexBuffer<'cty> -> (AbstractSyntax.Program) 
+val Main : (FSharp.Text.Lexing.LexBuffer<'cty> -> token) -> FSharp.Text.Lexing.LexBuffer<'cty> -> (Absyn.program) 

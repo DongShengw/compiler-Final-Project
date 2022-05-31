@@ -1,5 +1,9 @@
-void main(int n){
+void main(int n) {
+
    print n;
    print n--;
+   print n;
+
+   print --n;
    print n;
 }

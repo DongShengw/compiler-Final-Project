@@ -14,7 +14,7 @@
   <OtherFlags>--module CPar</OtherFlags>
 </FsYacc>
 
- 
+
 <Compile Include="Absyn.fs" />
 <Compile Include="Debug.fs" />
 <Compile Include="CPar.fs" />
@@ -29,21 +29,21 @@
 </ItemGroup>
 <ItemGroup>
 
-<MyItem Include="example\ex9.c" Args ="8"/>
+<MyItem Include="test\ex1.c" Args ="8"/>
  <!-- <MyItem Include="example\variable.c" Args ="8"/>  -->
  <!-- <MyItem Include="example\function1.c" Args ="8"/>  -->
 <!-- <MyItem Include="example\ex1.c" Args ="8"/> -->
 <!-- <MyItem Include="example\ex2.c" /> -->
 <!-- <MyItem Include="example\ex3.c" Args ="8"/> -->
 <!-- <MyItem Include="example\ex4.c" Args ="8"/>  -->
-<!-- <MyItem Include="example\ex5.c" Args ="8"/> 
+<!-- <MyItem Include="example\ex5.c" Args ="8"/>
 <MyItem Include="example\ex6.c" Args ="8"/>
 <MyItem Include="example\ex7.c" Args =""/>
 <MyItem Include="example\ex8.c" Args =""/>
 <MyItem Include="example\ex9.c" Args ="8"/>
 <MyItem Include="example\ex10.c" Args ="8"/>
 <MyItem Include="example\ex11.c" />
-<MyItem Include="example\ex12.c" /> 
+<MyItem Include="example\ex12.c" />
 <MyItem Include="example\ex13.c" />
 <MyItem Include="example\ex14.c" />
 <MyItem Include="example\ex15.c" />
@@ -57,11 +57,11 @@
 <MyItem Include="example\ex23.c" />
 <MyItem Include="example\ex24.c" />
 <MyItem Include="example\ex25.c" /> -->
- <!-- <MyItem Include="example\emptymain.c" Args ="8"/> 
- <MyItem Include="example\global.c" Args ="8"/> 
- <MyItem Include="example\variable.c" Args ="8"/> 
- <MyItem Include="example\array.c" Args ="8"/> 
- <MyItem Include="example\onearg.c" Args ="8"/> 
+ <!-- <MyItem Include="example\emptymain.c" Args ="8"/>
+ <MyItem Include="example\global.c" Args ="8"/>
+ <MyItem Include="example\variable.c" Args ="8"/>
+ <MyItem Include="example\array.c" Args ="8"/>
+ <MyItem Include="example\onearg.c" Args ="8"/>
  <MyItem Include="example\assign.c" Args ="8"/>  -->
  <!-- <MyItem Include="example\if.c" Args ="8"/>  -->
  <!-- <MyItem Include="example\while.c" Args ="8"/>  -->
@@ -75,7 +75,7 @@
 </ItemGroup>
 
 
-<Target Name="ccrun"> 
+<Target Name="ccrun">
 <Exec Command="
 echo -----------interprete------------
 dotnet run --project interpc.fsproj %(MyItem.RelativeDir)%(MyItem.FileName).c %(MyItem.Args)"

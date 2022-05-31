@@ -230,9 +230,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\大三——下\\编译原理\\compiler-Final-Project\\microc.fsproj",
-      "projectName": "microc",
-      "projectPath": "E:\\大三——下\\编译原理\\compiler-Final-Project\\microc.fsproj",
+      "projectUniqueName": "E:\\大三——下\\编译原理\\compiler-Final-Project\\interpc.fsproj",
+      "projectName": "interpc",
+      "projectPath": "E:\\大三——下\\编译原理\\compiler-Final-Project\\interpc.fsproj",
       "packagesPath": "C:\\Users\\栋晟\\.nuget\\packages\\",
       "outputPath": "E:\\大三——下\\编译原理\\compiler-Final-Project\\obj\\",
       "projectStyle": "PackageReference",
