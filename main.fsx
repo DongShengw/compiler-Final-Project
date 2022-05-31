@@ -1,4 +1,6 @@
 // 解释器
+dotnet "C:\Users\栋晟\.nuget\packages\fslexyacc\10.2.0\build\fslex\netcoreapp3.1\fslex.dll" -o "CLex.fs" --module CLex --unicode CLex.fsl
+
 #r "nuget: FsLexYacc";;  //添加包引用
 #load "Absyn.fs" "Debug.fs" "CPar.fs" "CLex.fs" "Parse.fs" "Interp.fs" "ParseAndRun.fs" ;;
 
@@ -13,6 +15,7 @@ run (fromFile "ex1.c") [8];; //解释执行 ex1.c
 run (fromFile "ex11.c") [8];; //解释执行 ex11.c
 
 //编译器
+dotnet "C:\Users\栋晟\.nuget\packages\fslexyacc\10.2.0\build\fsyacc\netcoreapp3.1\fsyacc.dll" -o "CPar.fs" --module CPar  CPar.fsy
 #r "nuget: FsLexYacc";;
 
 #load "Absyn.fs"  "CPar.fs" "CLex.fs" "Debug.fs" "Parse.fs" "StackMachine.fs" "Backend.fs" "Comp.fs" "ParseAndComp.fs";;

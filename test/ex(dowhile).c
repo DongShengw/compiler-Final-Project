@@ -1,7 +1,9 @@
-int main()
-{
-    int n=2;
-    do{
-        n++;
-    }while(n<0);
+Void main(Int n) {
+    Int i;
+    i=0;
+   do {
+        print(i);
+        n=n-1;
+   }
+   while(i<n);
 }
